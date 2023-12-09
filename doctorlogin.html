@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url(login.jpeg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      text-align: center;
+      border: 2px solid #ccc;
+      padding: 200px;
+      border-radius: 8px;
+      background-color: skyblue;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h1>Login</h1>
+    <label for="username">Username:<input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button onclick="validateLogin()">Login</button>
+    <p id="error-message"></p>
+  </div>
+
+  <script>
+    function validateLogin() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var errorMessage = document.getElementById("error-message");
+
+      // Simple validation
+      if (username === "" || password === "") {
+        errorMessage.innerText = "Username and password are required";
+        return;
+      }
+
+      // Simulate authentication (in a real scenario, do this on the server)
+      if (username === "user" && password === "password") {
+        errorMessage.innerText = "Login successful!";
+        // Redirect to a new page or perform further actions
+
+        // For demo purposes, store a flag in local storage to indicate login
+        localStorage.setItem("loggedIn", "true");
+      } else {
+        errorMessage.innerText = "Invalid username or password";
+      }
+    }
+
+    // Check if the user is already logged in
+    window.onload = function () {
+      if (localStorage.getItem("loggedIn") === "true") {
+        // Redirect to the authenticated page or perform further actions
+        alert("Already logged in!");
+        // Clear the local storage to simulate logging out
+        localStorage.removeItem("loggedIn");
+      }
+    };
+  </script>
+
+</body>
+</html>
